@@ -1,0 +1,18 @@
+import turtle
+t = turtle.Turtle()
+t.speed(5) # 1:slowest, 3:slow, 5:normal, 10:fast, 0:fastest
+t.pensize(2)
+t.ht()
+t.pendown()
+t.pencolor(0,0,255,0.5)
+t.begin_fill()
+t.fillcolor("yellow")
+t.forward(150)
+t.right(90)
+t.forward(150)
+t.right(90)
+t.forward(150)
+t.right(90)
+t.forward(150)
+t.right(90)
+t.end_fill()
