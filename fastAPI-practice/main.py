@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from mockdata import products
 
@@ -118,7 +118,7 @@ def get_products():
 # http://127.0.0.1:8000/products/100                                -path params
 # http://127.0.0.1:8000/products?id=1&title=Mouse&price=29.99       - query params
 
-# path params
+# path params {yha pr fixed values hoygi, 1 value pass kr skte ho, 2 value pass kr skte ho, but fixed values hi pass kr skte ho}
 @app.get("/products/{product_id}")
 def get_one_product(product_id: int):
 # if product is available with the id , return the product details, else return error message.
@@ -132,4 +132,24 @@ def get_one_product(product_id: int):
     }
 
 
-#  query params
+#query params {yha pr n number of values pass kr skte ho, kitni bi values pass kr skte ho }
+# @app.get("/greet")
+# def greet_user():
+#     return {
+#         "greet": "how's you"
+#     }
+
+# @app.get("/greet")
+# def greet_user(name: str, age: int):
+#     return {
+#         "greet": f"Hello {name}, Your age is {age} !"
+#     }
+
+
+@app.get("/greet")
+def greet_user(request:Request):
+    query_params = dict(request.query_params)
+    print(query_params)
+    return {
+        "greet": f"HELLO {query_params.get('name')}, Your age is {query_params.get('age')} !"
+    }
