@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from mockdata import products
+from dtos import ProductDTO
 
 # Initialize the FastAPI app instance
 app = FastAPI()
@@ -153,3 +154,33 @@ def greet_user(request:Request):
     return {
         "greet": f"HELLO {query_params.get('name')}, Your age is {query_params.get('age')} !"
     }
+
+@app.get("/greet/{name}")
+def greet_user_path(name: str, request: Request):
+    query_params = dict(request.query_params)
+    print(query_params)
+    return {
+        "greet": f"HELLO {name}, Your age is {query_params.get('age')} !"
+    }   
+
+
+@app.get("/greet/{name}/{age}")
+def greet_user_path(name: str, age: int):
+    return {
+        "greet": f"HELLO {name}, Your age is {age} !"
+    }
+
+#body, headers - request headers 
+
+# different types of HTTP methods
+
+@app.post("/create-post")
+def create_post(product_data: ProductDTO):
+    return {"status": "Post created successfully"}
+
+# How to validate data. - DTOS.
+# How to call different HTTP methods. -Any TOOL?
+
+# pydantic - ek module hai
+# python ke liye data types provide krta hai pydantic library. FastAPI ke sath use hota hai.
+
