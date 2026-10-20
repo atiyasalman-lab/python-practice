@@ -177,10 +177,13 @@ def greet_user_path(name: str, age: int):
 @app.post("/create-post")
 def create_post(product_data: ProductDTO):
     return {"status": "Post created successfully"}
+    product_data = product_data.model_dump()
+    print(product_data)
+
 
 # How to validate data. - DTOS.
 # How to call different HTTP methods. -Any TOOL?
 
 # pydantic - ek module hai
-# python ke liye data types provide krta hai pydantic library. FastAPI ke sath use hota hai.
+# python ke liye data types provide krta hai pydantic library. FastAPI ke sath use hota hai
 
